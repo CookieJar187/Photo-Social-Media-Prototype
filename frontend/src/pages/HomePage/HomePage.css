@@ -1,0 +1,22 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-page .header {
+    display: flex;
+}
+
+.home-page .header .app-title {
+    margin-right: auto;
+}
+
+.home-page .body {
+    display: flex;
+}
+.home-page .body .friends-panel {
+    flex: 0 0 30%;
+}
+.home-page .body .your-posts-panel {
+    flex: 1;
+}

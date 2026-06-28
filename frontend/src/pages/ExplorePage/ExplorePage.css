@@ -1,0 +1,12 @@
+.explore-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-page .header {
+    display: flex;
+}
+
+.explore-page .header .app-title {
+    margin-right: auto;
+}
