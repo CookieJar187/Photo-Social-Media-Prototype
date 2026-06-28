@@ -1,8 +1,8 @@
 import './HomePage.css'
 
 import { useEffect, useState } from 'react';
-import { getUserPosts } from "../../api/postsApi.js";
-import { getProfiles } from "../../api/profilesApi.js";
+import { getMyPosts } from "../../api/postsApi.js";
+import { getFollowers, getFollowing } from "../../api/profilesApi.js";
 
 import Navbar from '../../components/Navbar/Navbar'
 import AppHeader from '../../components/AppHeader/AppHeader'
@@ -12,15 +12,18 @@ import YourPostsPanel from './components/YourPostsPanel'
 
 function HomePage() {
 
-    const [profiles, setProfiles] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    const [following, setFollowing] = useState([]);
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         async function loadHomeData() {
-            const profilesResponse = await getProfiles();
-            const postsResponse = await getUserPosts();
+            const followersResponse = await getFollowers();
+            const followingResponse = await getFollowing();
+            const postsResponse = await getMyPosts();
 
-            setProfiles(profilesResponse.profiles);
+            setFollowers(followersResponse.profiles);
+            setFollowing(followingResponse.profiles)
             setPosts(postsResponse.posts);
         }
 
@@ -35,7 +38,7 @@ function HomePage() {
 
             <div className="body">
 
-                <FriendsPanel profiles={profiles}/>
+                <FriendsPanel followers={followers} following={following}/>
                 <YourPostsPanel posts={posts}/>
 
             </div>

@@ -1,7 +1,7 @@
 import './ExplorePage.css'
 
 import { useEffect, useState } from 'react'
-import { getUserPosts } from "../../api/postsApi.js";
+import { getPosts } from "../../api/postsApi.js";
 
 import Navbar from '../../components/Navbar/Navbar.jsx'
 import SearchBar from '../../components/SearchBar/SearchBar.jsx'
@@ -14,7 +14,7 @@ function ExplorePage() {
 
     useEffect(() => {
         async function loadHomeData() {
-            const postsResponse = await getUserPosts();
+            const postsResponse = await getPosts();
     
             setPosts(postsResponse.posts);
         }

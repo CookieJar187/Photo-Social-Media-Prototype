@@ -1,31 +1,31 @@
 import UserCard from '../../../components/UserCard/UserCard.jsx'
 
-function FriendsPanel({profiles}) {
+function FriendsPanel({followers, following}) {
 
     return (
         <div className="friends-panel">
 
-            <div className="friends-card">
+            <div className="followers-card">
 
-                <h2>Friends</h2>
+                <h2>Followers</h2>
 
-                {profiles.map((profile) => (
+                {followers.map((follower) => (
                     <UserCard
-                        key={profile.id}
-                        username={profile.username}
+                        key={follower.id}
+                        username={follower.username}
                     />
                 ))}
 
             </div>
 
-            <div className="friend-requests-card">
+            <div className="following-card">
                 
-                <h2>Friend requests</h2>
+                <h2>Following</h2>
 
-                {profiles.map((profile) => (
+                {following.map((followee) => (
                     <UserCard
-                        key={profile.id}
-                        username={profile.username}
+                        key={followee.id}
+                        username={followee.username}
                     />
                 ))}
 
