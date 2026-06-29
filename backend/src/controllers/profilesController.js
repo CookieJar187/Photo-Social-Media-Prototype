@@ -1,71 +1,49 @@
-const fakeProfiles = [
-  {
-    username: "benjamin",
-    id: "1"
-  },
-  {
-    username: "stefan",
-    id: "2"
-  },
-  {
-    username: "justin_122",
-    id: "3"
-  },
-  {
-    username: "igor_gaming2001",
-    id: "4"
-  },
-  {
-    username: "spaghetti_alla_napoletana",
-    id: "4"
-  },
-]
+import pool from "../db.js";
 
-const fakeFollowers = [
-  {
-    username: "stefan",
-    id: "2"
-  },
-  {
-    username: "igor_gaming2001",
-    id: "4"
-  },
-]
+export async function getProfiles(req, res) {
 
-const fakeFollowing = [
-  {
-    username: "stefan",
-    id: "2"
-  },
-  {
-    username: "spaghetti_alla_napoletana",
-    id: "4"
-  },
-]
-
-export function getProfiles(req, res) {
-  const userId = req.user.userId;
+  const result = await pool.query(
+      "SELECT * FROM users"
+  );
 
   return res.json({
     success: true,
-    profiles: fakeProfiles,
+    profiles: result.rows,
   });
 }
 
-export function getFollowers(req, res) {
+export async function getFollowers(req, res) {
+
   const userId = req.user.userId;
+
+  const result = await pool.query(
+    `SELECT users.id, users.username
+    FROM follows
+    JOIN users ON follows.following_id = users.id
+    WHERE follows.follower_id = $1`,
+    [userId]
+  );
 
   return res.json({
     success: true,
-    profiles: fakeFollowers,
+    profiles: result.rows,
   });
 }
 
-export function getFollowing(req, res) {
+export async function getFollowing(req, res) {
+
   const userId = req.user.userId;
+
+  const result = await pool.query(
+    `SELECT users.id, users.username
+    FROM follows
+    JOIN users ON follows.follower_id = users.id
+    WHERE follows.following_id = $1`,
+    [userId]
+  );
 
   return res.json({
     success: true,
-    profiles: fakeFollowing,
+    profiles: result.rows,
   });
 }
