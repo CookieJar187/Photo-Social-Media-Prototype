@@ -27,3 +27,24 @@ export async function getMyPosts() {
 
   return data;
 }
+
+export async function createPost(title, description) {
+  
+  const response = await fetch(`${API_BASE_URL}/posts`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", },
+    credentials: "include",
+    body: JSON.stringify({
+      title,
+      description
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Unhandled error.");
+  }
+
+  return data;
+}
