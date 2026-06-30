@@ -13,10 +13,12 @@ A full-stack social media prototype built with React and Express.
 
 ### Frontend
 
-npm install
+npm create vite@latest
 npm run dev
 
 ### Backend
 
-npm install
-npm start
+npm init -y
+npm i express
+npm i --save-dev nodemon
+npm run devStart

@@ -1,12 +1,8 @@
 import { createToken, verifyToken } from '../utils/jwt.js'
 
-const fakeUser = {
-  username: "benjamin",
-  password: "test123",
-  userId: "1"
-};
+import pool from "../db.js";
 
-export function login(req, res) {
+export async function login(req, res) {
   const { username, password } = req.body;
   
   if (!username || !password) {
@@ -16,36 +12,73 @@ export function login(req, res) {
     });
   }
 
-  const isValidLogin =
-    username === fakeUser.username &&
-    password === fakeUser.password;
+  try {
 
-  if (!isValidLogin) {
-    return res.status(401).json({
+    const result = await pool.query(
+      `SELECT id, username, password_hash
+      FROM users
+      WHERE username = $1`,
+      [username]
+    );
+
+    const user = result.rows[0];
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid username or password.",
+      });
+    }
+
+    const isValidPassword = password == user.password_hash;
+    if (!isValidPassword) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid username or password.",
+      });
+    }
+
+    const token = createToken({
+      userId: user.id,
+      username: user.username
+    })
+
+    res.cookie("accessToken", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 1000
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Login successful.",
+      user: {
+        username: user.username,
+        userId: user.id,
+      },
+    });
+
+  } catch(err) {
+    console.error("Login error:", err);
+
+    return res.status(500).json({
       success: false,
-      message: "Invalid username or password.",
+      message: "Internal server error.",
     });
   }
+}
 
-  const token = createToken({
-    userId: fakeUser.userId,
-    username: fakeUser.username
-  })
+export function logout(req, res) {
 
-  res.cookie("accessToken", token, {
+  res.clearCookie("accessToken", {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
-    maxAge: 60 * 60 * 1000
   });
 
-  return res.status(200).json({
+  return res.json({
     success: true,
-    message: "Login successful.",
-    user: {
-      username: fakeUser.username,
-      userId: fakeUser.userId,
-    },
+    message: "Logged out successfully.",
   });
 }
 
@@ -81,3 +114,4 @@ export function getMe(req, res) {
     user: req.user,
   })
 }
+

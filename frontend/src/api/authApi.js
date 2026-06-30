@@ -17,6 +17,21 @@ export async function loginUser(username, password) {
   return data;
 }
 
+export async function logoutUser() {
+  const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Logout failed");
+  }
+
+  return data;
+}
+
 export async function getStatus() {
     const response = await fetch(`${API_BASE_URL}/auth/status`, {
     credentials: "include",
