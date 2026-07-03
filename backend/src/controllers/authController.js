@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt'
+
 import { createToken, verifyToken } from '../utils/jwt.js'
 
 import pool from "../db.js";
@@ -29,7 +31,7 @@ export async function login(req, res) {
       });
     }
 
-    const isValidPassword = password == user.password_hash;
+    const isValidPassword = await bcrypt.compare(password, user.password_hash);
     if (!isValidPassword) {
       return res.status(401).json({
         success: false,
@@ -119,11 +121,12 @@ export async function signupUser(req, res) {
       });
     }
 
+    const password_hash = await bcrypt.hash(password, 13);
     const signupResult = await pool.query(
       `INSERT INTO users (username, email, password_hash)
       VALUES ($1, $2, $3)
       RETURNING id, username;`,
-      [username, email, password]
+      [username, email, password_hash]
     );
     const user = signupResult.rows[0]
 

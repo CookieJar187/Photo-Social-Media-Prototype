@@ -3,7 +3,7 @@ import pool from "../db.js";
 export async function getProfiles(req, res) {
 
   const result = await pool.query(
-      "SELECT * FROM users"
+      `SELECT id, username FROM users`
   );
 
   return res.json({
