@@ -16,7 +16,7 @@ function LoginPage() {
         try {
             const data = await loginUser(username, password);
             console.log("Login successful:", data);
-            navigate("/home")
+            navigate("/home");
         } catch (error) {
             console.log("Login failed:", error.message);
         }

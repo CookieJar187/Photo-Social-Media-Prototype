@@ -3,7 +3,7 @@ import pool from "../db.js";
 export async function getPosts(req, res) {
 
   const result = await pool.query(
-      "SELECT * FROM posts"
+      `SELECT * FROM posts`
   );
 
   return res.json({
@@ -12,12 +12,34 @@ export async function getPosts(req, res) {
   });
 }
 
+export async function getPost(req, res) {
+  const { postId } = req.params;
+
+  const result = await pool.query(
+      `SELECT * FROM posts
+      WHERE posts.id = $1;`,
+      [postId]
+  );
+
+  if (!result.rows[0]) {
+    return res.status(404).json({
+      success: false,
+      message: "Post not found.",
+    });
+  }
+
+  return res.json({
+    success: true,
+    post: result.rows[0],
+  });
+}
+
 export async function getMyPosts(req, res) {
 
   const userId = req.user.userId;
 
   const result = await pool.query(
-      "SELECT * FROM posts WHERE author_id = $1",
+      `SELECT * FROM posts WHERE author_id = $1`,
       [userId]
   );
 

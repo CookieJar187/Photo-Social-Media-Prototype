@@ -12,6 +12,28 @@ export async function getProfiles(req, res) {
   });
 }
 
+export async function getProfile(req, res) {
+  const { userId } = req.params;
+
+  const result = await pool.query(
+      `SELECT username FROM users
+      WHERE users.id = $1;`,
+      [userId]
+  );
+
+  if (!result.rows[0]) {
+    return res.status(404).json({
+      success: true,
+      message: "Profile not found.",
+    })
+  };
+
+  return res.json({
+    success: true,
+    profile: result.rows[0],
+  });
+}
+
 export async function getFollowers(req, res) {
 
   const userId = req.user.userId;

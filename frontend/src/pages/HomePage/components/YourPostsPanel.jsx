@@ -13,6 +13,7 @@ function YourPostsPanel({posts}) {
             {posts.map((post) => (
                 <PostCard
                     key={post.id}
+                    id={post.id}
                     title={post.title}
                     description={post.description}
                 />

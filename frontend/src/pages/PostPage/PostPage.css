@@ -1,0 +1,21 @@
+.body {
+    display: flex;
+}
+
+.post-details {
+    flex: 1;
+}
+.post-comments {
+    flex: 0 0 40%;
+}
+
+.comment {
+    border: 1px solid hsl(0, 0%, 80%);
+    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+    border-radius: 2%;
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(204, 212, 217);
+    max-width: 600px;
+    display: inline-block;
+}

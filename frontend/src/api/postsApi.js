@@ -14,6 +14,20 @@ export async function getPosts() {
   return data;
 }
 
+export async function getPost(postId) {
+  const response = await fetch(`${API_BASE_URL}/posts/post/${postId}`, {
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Unhandled error.");
+  }
+
+  return data;
+}
+
 export async function getMyPosts() {
   const response = await fetch(`${API_BASE_URL}/posts/me`, {
     credentials: "include",
