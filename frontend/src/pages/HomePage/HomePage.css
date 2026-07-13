@@ -1,22 +1,33 @@
+body,
+#root {
+    margin: 0;
+    min-height: 100%;
+}
+
 .home-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100%;
 }
 
-.home-page .header {
+.home-page main {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    min-width: 100%;
 }
 
-.home-page .header .app-title {
-    margin-right: auto;
+.friends-panel {
+    flex: 0 0 25%;
+}
+.your-posts-panel {
+    flex: 0 0 50%;
 }
 
-.home-page .body {
+.your-posts {
     display: flex;
-}
-.home-page .body .friends-panel {
-    flex: 0 0 30%;
-}
-.home-page .body .your-posts-panel {
-    flex: 1;
+    flex-wrap: wrap;
 }

@@ -1,5 +1,19 @@
-.body {
+main {
     display: flex;
+}
+
+.post-details {
+    margin-left: 25px;
+    display: flex;
+}
+.post-description {
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 80px;
+    font-size: large;
+}
+.post-title {
+    color: black;
 }
 
 .post-details {

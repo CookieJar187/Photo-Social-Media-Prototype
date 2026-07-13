@@ -4,8 +4,7 @@ function UserCard({username}) {
     return (
         <div className="user-card">
             <h2 className="user-card-name">{username}</h2>
-            <button className="user-card-friend">Send friend request</button>
-            <button className="user-card-unfriend">Unfriend</button>
+            <button className="user-card-follow">Follow</button>
         </div>
     )
 }

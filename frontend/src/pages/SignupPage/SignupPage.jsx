@@ -1,9 +1,12 @@
+import "./SignupPage.css"
+
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { signupUser } from "../../api/authApi";
 
 import AuthHeader from '../../components/AuthHeader/AuthHeader'
+import AuthFooter from '../../components/AuthFooter/AuthFooter'
 
 function SignupPage() {
 
@@ -25,44 +28,53 @@ function SignupPage() {
     }
 
     return (
-        <>
+        <div className="signup-page">
 
         <AuthHeader/>
 
-        <h3>Signup</h3>
+        <main>
 
-        <form onSubmit={handleSignup}>
+            <p>Share photos, explore posts, engage with new people!</p>
+            <h3>Create a New Account</h3>
 
-            <label>Username</label>
-            <input
-                placeholder="Enter your username..."
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+            <form onSubmit={handleSignup} className="signup-form">
 
-            <label>Email</label>
-            <input
-                placeholder="Enter your email address..."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+                <div className="signup-form-input-field">
+                    <label>Username</label>
+                    <input
+                        placeholder="Enter your username..."
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
 
-            <label>Password</label>
-            <input
-                placeholder="Enter your password..."
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <div className="signup-form-input-field">
+                    <label>Email</label>
+                    <input
+                        placeholder="Enter your email address..."
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
 
-            <button type="submit">Submit</button>
+                <div className="signup-form-input-field">
+                    <label>Password</label>
+                    <input
+                        placeholder="Enter your password..."
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
 
-        </form>
+                <button type="submit">Submit</button>
 
-        <footer>
-            <button>Login instead</button>
-        </footer>
+            </form>
+            
+        </main>
 
-        </>
+        <AuthFooter onClick={() => navigate("/login")}/>
+
+        </div>
     )
 }
 

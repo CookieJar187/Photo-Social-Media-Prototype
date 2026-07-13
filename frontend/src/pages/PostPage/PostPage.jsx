@@ -41,18 +41,21 @@ function PostPage() {
             <AppHeader/>
             <button onClick={handleReturn}>Go back</button>
 
-            <div className="body">
+            <main>
 
                 <div className="post-details">
 
-                    <h1 className="post-title">{post.title}</h1>
+                    <div className="left-side">
+                        <h1 className="post-title">{post.title}</h1>
 
-                    <img className="post-image" alt={post.title} src={apple_img} width={512} height={512}/>
+                        <img className="post-image" alt={post.title} src={apple_img} width={256} height={256}/>
+
+                        <p className="post-author">Posted by: {author.username}</p>
+                        <p className="post-date">Posted on: {post.created_at}</p>
+                    </div>
+
                     <p className="post-description">{post.description}</p>
-
-                    <p className="post-author">Posted by {author.username}</p>
-                    <p className="post-date">Posten on {post.created_at}</p>
-
+                    
                 </div>
 
                 <div className="post-comments">
@@ -71,7 +74,7 @@ function PostPage() {
 
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     )
 }

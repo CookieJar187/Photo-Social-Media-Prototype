@@ -9,15 +9,19 @@ function YourPostsPanel({posts}) {
             <h2>Your Posts</h2>
 
             <SearchBar/>
-            
-            {posts.map((post) => (
-                <PostCard
-                    key={post.id}
-                    id={post.id}
-                    title={post.title}
-                    description={post.description}
-                />
-            ))}
+
+            <div className="your-posts">
+
+                {posts.map((post) => (
+                    <PostCard
+                        key={post.id}
+                        id={post.id}
+                        title={post.title}
+                        description={post.description}
+                    />
+                ))}
+                
+            </div>
 
         </div>
     )

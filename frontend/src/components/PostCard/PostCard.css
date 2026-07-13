@@ -5,10 +5,25 @@
     padding: 5px;
     margin: 10px;
     background-color: rgb(204, 212, 217);
-    max-width: 600px;
-    display: inline-block;
+    width: 280px;
+    display: flex;
+    gap: 10px;
 }
 
-.post-card .post-card-image {
+.post-card-image {
   border-radius: 5%;
+}
+
+.post-card-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.post-card-description {
+  color: rgb(93, 97, 99);
+  margin: 0;
+}
+.post-card-author {
+  font-size: small;
+  color: rgb(155, 162, 167);
+  margin: 0;
 }

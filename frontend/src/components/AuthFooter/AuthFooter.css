@@ -1,0 +1,10 @@
+footer {
+    margin-top: auto;
+    background-color: rgb(78, 115, 138);
+    min-width: 100%;
+    display: flex;
+}
+
+button {
+    margin: 10px;
+}

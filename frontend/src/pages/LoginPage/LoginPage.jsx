@@ -1,9 +1,12 @@
+import "./LoginPage.css"
+
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../api/authApi";
 
 import AuthHeader from '../../components/AuthHeader/AuthHeader'
+import AuthFooter from "../../components/AuthFooter/AuthFooter";
 
 function LoginPage() {
     const [username, setUsername] = useState("");
@@ -23,38 +26,49 @@ function LoginPage() {
     }
 
     return (
-        <>
+        <div className="login-page">
 
         <AuthHeader/>
 
-        <h3>Login</h3>
+        <main>
 
-        <form onSubmit={handleLogin}>
+            <p>Share photos, explore posts, engage with new people!</p>
+            <h3>Login Page</h3>
 
-            <label>Username</label>
-            <input
-                placeholder="Enter your username..."
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+            <form onSubmit={handleLogin} className="login-form">
 
-            <label>Password</label>
-            <input
-                placeholder="Enter your password..."
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <div className="login-form-input-field">
+                    <label>Username</label>
+                    <input
+                        placeholder="Enter your username..."
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
 
-            <button type="submit">Submit</button>
+                <div className="login-form-input-field">
+                    <label>Password</label>
+                    <input
+                        placeholder="Enter your password..."
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
 
-        </form>
+                <button type="submit">Submit</button>
 
-        <footer>
-            <button>Create a new account</button>
-        </footer>
+            </form>
 
-        </>
+        </main>
+        
+        <AuthFooter onClick={() => navigate("/signup")}/>
+
+        </div>
     )
 }
 
 export default LoginPage
+
+//        <footer>
+//            <button className="footer-button" onClick={() => navigate("/signup")}>Create a new account</button>
+//        </footer>

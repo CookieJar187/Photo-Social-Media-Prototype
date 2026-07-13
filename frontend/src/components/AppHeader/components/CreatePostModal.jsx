@@ -1,3 +1,6 @@
+import apple_img from '../../../assets/apple.jpg'
+import "./CreatePostModal.css"
+
 import { useState } from "react";
 
 import { createPost } from "../../../api/postsApi";
@@ -24,9 +27,8 @@ function CreatePostModal({ onClose }) {
 
   return (
     <Modal onClose={onClose}>
-      <h2>Create New Post</h2>
-      <img className="post-image" alt="Post image" height={512} width={512} />
-      <button>Select image</button>
+      <h2 className="modal-label">Create New Post</h2>
+      <img className="post-image" src={apple_img} alt="Post image" height={256} width={256} />
 
       <textarea
         className="post-title"
@@ -41,8 +43,9 @@ function CreatePostModal({ onClose }) {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-
-      <button onClick={post}>Post</button>
+      
+      <button className="select-image">Select image</button>
+      <button className="create-post" onClick={post}>Post</button>
     </Modal>
   );
 }

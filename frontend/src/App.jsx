@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'
 
 function App() {
   return (
-    <main className="main-content">
+    <>
       <Routes>
         <Route element={<GuestRoute/>}>
           <Route path="/login" element={<LoginPage/>}/>
@@ -27,7 +27,7 @@ function App() {
         </Route>
 
       </Routes>
-    </main>
+    </>
   )
 }
 

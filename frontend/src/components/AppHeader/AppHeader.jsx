@@ -1,3 +1,5 @@
+import './AppHeader.css'
+
 import { useState } from 'react';
 
 import CreatePostModal from './components/CreatePostModal'

@@ -36,12 +36,12 @@ function HomePage() {
             <AppHeader/>
             <Navbar/>
 
-            <div className="body">
+            <main>
 
                 <FriendsPanel followers={followers} following={following}/>
                 <YourPostsPanel posts={posts}/>
 
-            </div>
+            </main>
 
         </div>
     )

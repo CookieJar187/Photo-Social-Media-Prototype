@@ -1,3 +1,5 @@
+import "./ProfilesPage.css"
+
 import { useEffect, useState } from 'react'
 import { getProfiles } from '../../api/profilesApi'
 

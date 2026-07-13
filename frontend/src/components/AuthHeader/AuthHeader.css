@@ -1,0 +1,11 @@
+header {
+    width: 100%;
+    background-color: rgb(78, 115, 138);
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}

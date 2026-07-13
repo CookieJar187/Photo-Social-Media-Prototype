@@ -1,12 +1,26 @@
+body,
+#root {
+    margin: 0;
+    min-height: 100%;
+}
+
 .explore-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100%;
 }
 
-.explore-page .header {
+.explore-page main {
+    margin-left: 5%;
+    margin-right: 5%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.explore-page .header .app-title {
-    margin-right: auto;
+.search-tools {
+    margin-left: 10%;
+    flex: 100%;
 }

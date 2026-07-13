@@ -28,11 +28,12 @@ function ExplorePage() {
             <AppHeader/>
             <Navbar/>
 
-            <h2>Explore Posts</h2>
+            <main>
 
-            <SearchBar/>
-
-            <div className="posts">
+                <div className="search-tools">
+                    <h2>Explore Posts</h2>
+                    <SearchBar/>
+                </div>
 
                 {posts.map((post) => (
                     <PostCard
@@ -43,7 +44,7 @@ function ExplorePage() {
                     />
                 ))}
 
-            </div>
+            </main>
 
         </div>
     )

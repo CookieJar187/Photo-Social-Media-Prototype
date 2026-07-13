@@ -1,6 +1,8 @@
+import "./AuthHeader.css"
+
 function AuthHeader() {
     return (
-        <header className="header">
+        <header>
             <h1 className="app-title">Photo Social Media Prototype</h1>
         </header>
     )
